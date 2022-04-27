@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gif Ara...</title>
+    </head>
+<script>
+                         //22.12.2021 bu siteyi bi ara geliştir gif arama gibi bişi olsun https://inflames.xyz/ buraya https://inflames.xyz/gifara ssiye koyarsın ;)...
+
+    function httpGetAsync(theUrl, callback) {
+        var xmlHttp = new XMLHttpRequest();
+
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                callback(xmlHttp.responseText);
+            }
+        }
+
+        xmlHttp.open("GET", theUrl, true);
+
+        xmlHttp.send(null);
+
+        return;
+    }
+
+    function tenorCallback_search(responsetext) {
+        var response_objects = JSON.parse(responsetext);
+
+        random = response_objects["results"];
+
+        var çalmayın = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "27", "28", "29", "30", "31", "32,", "33", "34", "35", "36", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50"]
+
+        var Covid = çalmayın[Math.floor(Math.random() * çalmayın.length)];
+        var Covid2 = çalmayın[Math.floor(Math.random() * çalmayın.length)];
+
+        document.getElementById("share_gif").src = random[parseInt(Covid)]["media"][0]["tinygif"]["url"];
+        document.getElementById("share_gif2").src = random[parseInt(Covid2)]["media"][0]["tinygif"]["url"];
+
+        return;
+
+    }
+
+
+    function grab_data() {
+        // api keyin süresi felan var mı bilmiom varsa ve dolduysa yenisini alırsın tenor dan
+        var apikey = "LIVDSRZULELA";
+        var lmt = 100;
+
+        var search_term = "cat";
+
+        var search_url = "https://g.tenor.com/v1/search?q=" + search_term + "&key=" +
+            apikey + "&limit=" + lmt;
+
+        httpGetAsync(search_url, tenorCallback_search);
+
+        return;
+    }
+
+    grab_data();
+
+
+</script>
+
+<body>
+    <p style=" position: relative; right: -130px;">
+        <img id="share_gif" src="" alt="" style="width:498px;height:372px;"> .....
+        <img id="share_gif2" src="" alt="" style="width:498px;height:372px;">
+    </p>
+    <br><br><br><br><br>
+    <button onclick="window.location.reload()"
+        style="background-color: white; padding: 50px; position: relative; right: -550px; border: 0px;">Yeni gif!</button>
+
+</body>
+
+</html>
